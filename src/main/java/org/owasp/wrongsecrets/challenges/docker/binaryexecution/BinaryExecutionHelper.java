@@ -6,6 +6,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -210,7 +211,7 @@ public class BinaryExecutionHelper {
     }
     File challengeFile = retrieveFile(fileName);
     // prepare file to execute
-    File execFile = File.createTempFile("c-exec-" + fileName, "sh");
+    File execFile = Files.createTempFile("c-exec-" + fileName, "sh").toFile();
     if (!execFile.setExecutable(true)) {
       log.info("setting the file {} executable failed... rest can be ignored", execFile.getPath());
     }
