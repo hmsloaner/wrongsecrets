@@ -3,6 +3,7 @@ package org.owasp.wrongsecrets.challenges.docker.binaryexecution;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
@@ -116,7 +117,7 @@ public class BinaryExecutionHelper {
     Process pr = ps.start();
     try (BufferedReader in =
         new BufferedReader(new InputStreamReader(pr.getInputStream(), StandardCharsets.UTF_8))) {
-      String result = in.readLine();
+      String result = BoundedLineReader.readLine(in, 5_000_000);
       pr.waitFor();
       return result;
     }

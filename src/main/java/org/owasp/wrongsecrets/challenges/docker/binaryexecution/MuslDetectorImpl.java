@@ -1,6 +1,7 @@
 package org.owasp.wrongsecrets.challenges.docker.binaryexecution;
 
 import com.google.common.base.Strings;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +20,7 @@ public class MuslDetectorImpl implements MuslDetector {
       Process pr = ps.start();
       try (BufferedReader in =
           new BufferedReader(new InputStreamReader(pr.getInputStream(), StandardCharsets.UTF_8))) {
-        String result = in.readLine();
+        String result = BoundedLineReader.readLine(in, 5_000_000);
         return !Strings.isNullOrEmpty(result) && result.contains("musl");
       }
     } catch (IOException e) {
