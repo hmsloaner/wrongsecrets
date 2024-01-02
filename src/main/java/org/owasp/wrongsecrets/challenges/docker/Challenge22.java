@@ -27,8 +27,8 @@ public class Challenge22 implements Challenge {
   /** {@inheritDoc} */
   @Override
   public boolean answerCorrect(String answer) {
-    return binaryExecutionHelper
-        .executeCommand(answer, "wrongsecrets-rust")
-        .equals("This is correct! Congrats!");
+    return "This is correct! Congrats!"
+        .equals(binaryExecutionHelper
+        .executeCommand(answer, "wrongsecrets-rust"));
   }
 }

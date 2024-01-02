@@ -34,7 +34,7 @@ public class Challenge8 extends FixedAnswerChallenge {
 
   @Override
   public String getAnswer() {
-    if (!Strings.isNullOrEmpty(serverCode) && !serverCode.equals("not_set")) {
+    if (!Strings.isNullOrEmpty(serverCode) && !"not_set".equals(serverCode)) {
       return serverCode;
     } else {
       return generateRandomString();
