@@ -28,8 +28,8 @@ public class Challenge36 implements Challenge {
 
   @Override
   public boolean answerCorrect(String answer) {
-    return binaryExecutionHelper
-        .executeCommand(answer, executable)
-        .equals("This is correct! Congrats!");
+    return "This is correct! Congrats!"
+        .equals(binaryExecutionHelper
+        .executeCommand(answer, executable));
   }
 }

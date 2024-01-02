@@ -155,7 +155,7 @@ public class ChallengesController {
       model.addAttribute("answerIncorrect", "This challenge has been disabled.");
     }
     if (ctfModeEnabled && challenges.isFirstChallenge(challengeDefinition)) {
-      if (!Strings.isNullOrEmpty(ctfServerAddress) && !ctfServerAddress.equals("not_set")) {
+      if (!Strings.isNullOrEmpty(ctfServerAddress) && !"not_set".equals(ctfServerAddress)) {
         model.addAttribute(
             "answerCorrect",
             "You are playing in CTF Mode where you need to give your answer once more to "
@@ -215,11 +215,11 @@ public class ChallengesController {
         // configuration otherwise this is not maintainable, probably give the challenge a CTF
         // method hook which you can override and do these kind of things in there.
         if (ctfModeEnabled) {
-          if (!Strings.isNullOrEmpty(ctfServerAddress) && !ctfServerAddress.equals("not_set")) {
+          if (!Strings.isNullOrEmpty(ctfServerAddress) && !"not_set".equals(ctfServerAddress)) {
             if (challenge instanceof Challenge8) {
               if (!Strings.isNullOrEmpty(keyToProvideToHost)
-                  && !keyToProvideToHost.equals(
-                      "not_set")) { // this means that it was overriden with a code that needs to be
+                  && !"not_set".equals
+                      (keyToProvideToHost)) { // this means that it was overriden with a code that needs to be
                 // returned to the ctf key exchange host.
                 model.addAttribute(
                     "answerCorrect",
@@ -231,8 +231,8 @@ public class ChallengesController {
               }
             } else if (challenge instanceof Challenge30) {
               if (!Strings.isNullOrEmpty(keyToProvideToHostForChallenge30)
-                  && !keyToProvideToHostForChallenge30.equals(
-                      "not_set")) { // this means that it was overriden with a code that needs to be
+                  && !"not_set".equals
+                      (keyToProvideToHostForChallenge30)) { // this means that it was overriden with a code that needs to be
                 // returned to the ctf key exchange host.
                 model.addAttribute(
                     "answerCorrect",
@@ -244,8 +244,8 @@ public class ChallengesController {
               }
             } else if (challenge instanceof Challenge37) {
               if (!Strings.isNullOrEmpty(getKeyToProvideToHostChallenge37)
-                  && !keyToProvideToHostForChallenge30.equals(
-                      "not_set")) { // this means that it was overriden with a code that needs to be
+                  && !"not_set".equals
+                      (keyToProvideToHostForChallenge30)) { // this means that it was overriden with a code that needs to be
                 // returned to the ctf key exchange hos
                 model.addAttribute(
                     "answerCorrect",
